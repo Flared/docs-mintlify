@@ -13,6 +13,9 @@ import GatedAccessFeature from '/snippets/gated-access-feature.mdx';
     [threat_flow/intel/requests <Icon icon="code" size={16} />](/api-reference/v4/endpoints/create-intel-request)
     endpoint to queue the generation of a report for a given question.
 
+    Send the intelligence question in `question`. Include any time window in the
+    question, such as "in the last week" or "in the last 6 months".
+
     This endpoint returns a `request_id` that can be used to poll the request until it is completed.
   </Step>
 
@@ -49,7 +52,7 @@ api_client = FlareApiClient.from_env()
 intel_request_resp = api_client.post(
     "/firework/v4/threat_flow/intel/requests",
     json={
-        "question": "xss vulnerability in banks",
+        "question": "xss vulnerabilities targeting banks in the last 30 days",
         "tone": "analytical",
     },
 )
